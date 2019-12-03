@@ -1,0 +1,20 @@
+server:
+  port: 8081
+plugin:
+  calssName: com.dhcc.plugin
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: neo_route
+        uri: dubbo://127.0.0.1:20880/
+        predicates:
+          - Path=/name/**
+        filters:
+          - StripPrefix=1
+      - id: neo_route
+        uri: dubbox://127.0.0.1:20880/
+        predicates:
+          - Path=/name1/**
+        filters:
+          - StripPrefix=1
